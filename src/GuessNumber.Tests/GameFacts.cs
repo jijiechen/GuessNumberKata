@@ -24,33 +24,21 @@ namespace GuessNumber.Tests
             Assert.Equal("0A0B", result);
         }
 
-        
-        [Fact]
-        public void should_output_0A1B_when_1_number_matches_value_only()
-        {
-            var random = "1234";
-            var guess = "4678";
 
+        [Theory]
+        [InlineData("1234", "4678", 1)]
+        [InlineData("1234", "4378", 2)]
+        public void should_output_numbers_of_value_match(string random, string guess, int countValueMatch)
+        {
             var game = new Game(random);
 
 
             var result = game.Guess(guess);
-            Assert.Equal("0A1B", result);
+
+            var expected = string.Format("0A{0}B", countValueMatch);
+            Assert.Equal(expected, result);
         }
-        
 
-        [Fact]
-        public void should_output_0A2B_when_2_numbers_match_value_only()
-        {
-            var random = "1234";
-            var guess = "4378";
-
-            var game = new Game(random);
-
-
-            var result = game.Guess(guess);
-            Assert.Equal("0A2B", result);
-        }
 
         
         [Fact]
