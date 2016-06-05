@@ -14,12 +14,17 @@ namespace GuessNumber
         public string Guess(string guess)
         {
             var guesingChars = guess.ToCharArray();
+            var countValueAndLocationMatches = 0;
             for (int i = 0; i < guesingChars.Length; i++)
             {
                 if (_random[i] == guesingChars[i])
                 {
-                    return "1A0B";
+                    countValueAndLocationMatches++;
                 }
+            }
+            if (countValueAndLocationMatches > 0)
+            {
+                return string.Format("{0}A0B", countValueAndLocationMatches);
             }
 
 
