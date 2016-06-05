@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BuiltinRandomNumberGenerator.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameFacade.cs" />
     <Compile Include="IRandomNumberGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
