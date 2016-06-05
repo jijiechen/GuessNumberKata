@@ -38,6 +38,20 @@ namespace GuessNumber.Tests
             Assert.Equal("0A1B", result);
         }
 
+        
+        [Fact]
+        public void should_output_1A0B_when_1_number_matches_value_and_location_matches()
+        {
+            var random = "1234";
+            var guess = "1678";
+
+            var game = new Game(random);
+
+
+            var result = game.Guess(guess);
+            Assert.Equal("1A0B", result);
+        }
+
 
 
 
