@@ -57,10 +57,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GuessNumber\GuessNumber.csproj">
+      <Project>{55d929d8-cb84-4b10-8852-da3e8d7777fd}</Project>
+      <Name>GuessNumber</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
