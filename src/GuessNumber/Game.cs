@@ -15,28 +15,23 @@ namespace GuessNumber
         public string Guess(string guess)
         {
             var guesingChars = guess.ToCharArray();
-            var countValueAndLocationMatches = guesingChars.Where((t, i) => _random[i] == t).Count();
 
+            var exactMatches = guesingChars.Where((t, i) => _random[i] == t).Count();
+            var onlyValueMatches = guesingChars.Count(guesingChar => MatchValueOnly(guesingChar, guesingChars));
 
-            var countValueMatches = guesingChars.Count(guesingChar =>
-            {
-                var index = Array.IndexOf(_random, guesingChar);
-                var valueMatched = index > -1;
+            return string.Format("{0}A{1}B", exactMatches, onlyValueMatches);
+        }
 
-                if (valueMatched)
-                {
-                    var locationMatched = guesingChars[index] == guesingChar;
-                    return !locationMatched;
-                }
-                return valueMatched;
-            });
-            if (countValueAndLocationMatches > 0 || countValueMatches > 0)
-            {
-                return string.Format("{0}A{1}B", countValueAndLocationMatches, countValueMatches);
-            }
+        private bool MatchValueOnly(char guesingChar, char[] guesingChars)
+        {
+            var matchedIndex = Array.IndexOf(_random, guesingChar);
+            var valueMatched = matchedIndex > -1;
 
+            if (!valueMatched) 
+                return false;
 
-            return "0A0B";
+            var locationMatched = guesingChars[matchedIndex] == guesingChar;
+            return !locationMatched;
         }
     }
 }
