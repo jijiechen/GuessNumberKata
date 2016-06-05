@@ -50,5 +50,21 @@ namespace GuessNumber.Tests
             }
         }
 
+
+        [Fact]
+        public void should_print_you_win_if_guess_success()
+        {
+            using (var io = new FakeInputOutput())
+            {
+                io.In("1234");
+
+                var facade = new GameFacade(io.InReader, io.OutWriter);
+                facade.StartGame(new Game("1234"));
+
+                Assert.Contains("You win", io.Out());
+            }
+        }
+
+
     }
 }

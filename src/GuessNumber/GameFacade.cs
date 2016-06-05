@@ -29,6 +29,12 @@ namespace GuessNumber
                     var result = game.Guess(input);
                     _gameOutput.WriteLine(result);
                     _gameOutput.Flush();
+
+                    if (result == "4A0B")
+                    {
+                        _gameOutput.WriteLine("You win");
+                        _gameOutput.Flush();
+                    }
                 }
 
             }
