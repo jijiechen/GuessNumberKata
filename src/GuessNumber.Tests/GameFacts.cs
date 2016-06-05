@@ -58,21 +58,20 @@ namespace GuessNumber.Tests
         }
 
 
-        [Fact]
-        public void should_output_1A1B_when_1_matches_value_only_and_1_matches_value_and_position()
+        [Theory]
+        [InlineData("1234", "1378", 1, 1)]
+        [InlineData("1234", "2314", 1, 3)]
+        [InlineData("1234", "1238", 3, 0)]
+        [InlineData("1234", "4321", 0, 4)]
+        [InlineData("1234", "1234", 4, 0)]
+        public void should_output_matches_including_both_matches(string random, string guess, int countExactMatches, int countValueOnlyMatches)
         {
-            var random = "1234";
-            var guess = "1378";
-
             var game = new Game(random);
 
 
             var result = game.Guess(guess);
-            Assert.Equal("1A1B", result);
+            var expected = string.Format("{0}A{1}B", countExactMatches, countValueOnlyMatches);
+            Assert.Equal(expected, result);
         }
-
-
-
-
     }
 }
