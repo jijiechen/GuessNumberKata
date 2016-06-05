@@ -19,7 +19,6 @@ namespace GuessNumber.Tests
             }
         }
 
-
         [Fact]
         public void should_guess_numbers()
         {
@@ -33,5 +32,23 @@ namespace GuessNumber.Tests
                 Assert.Contains("2A0B", io.Out());
             }
         }
+
+
+        [Fact]
+        public void should_guess_multiple_times()
+        {
+            using (var io = new FakeInputOutput())
+            {
+                io.In("7634");
+                io.In("1432");
+
+                var facade = new GameFacade(io.InReader, io.OutWriter);
+                facade.StartGame(new Game("1234"));
+
+                Assert.Contains("2A0B", io.Out());
+                Assert.Contains("2A2B", io.Out());
+            }
+        }
+
     }
 }

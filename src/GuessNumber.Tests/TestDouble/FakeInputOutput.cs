@@ -24,7 +24,8 @@ namespace GuessNumber.Tests.TestDouble
         {
             var lastPosition = _inputStream.Position;
 
-            InWriter.Write(content);
+            _inputStream.Seek(0, SeekOrigin.End);
+            InWriter.WriteLine(content);
             InWriter.Flush();
 
             _inputStream.Seek(lastPosition, SeekOrigin.Begin);

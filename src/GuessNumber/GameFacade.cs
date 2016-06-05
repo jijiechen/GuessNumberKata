@@ -20,11 +20,18 @@ namespace GuessNumber
             _gameOutput.WriteLine("please input your guess:");
             _gameOutput.Flush();
 
-            string input = _userInput.ReadLine();
-            var result = game.Guess(input);
-            _gameOutput.WriteLine(result);
-            _gameOutput.Flush();
+            string input;
+            while (!_userInput.EndOfStream)
+            {
+                input = _userInput.ReadLine();
+                if (!string.IsNullOrWhiteSpace(input))
+                {
+                    var result = game.Guess(input);
+                    _gameOutput.WriteLine(result);
+                    _gameOutput.Flush();
+                }
 
+            }
         }
     }
 }
