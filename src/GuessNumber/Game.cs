@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace GuessNumber
 {
@@ -14,28 +15,14 @@ namespace GuessNumber
         public string Guess(string guess)
         {
             var guesingChars = guess.ToCharArray();
-            var countValueAndLocationMatches = 0;
-            for (int i = 0; i < guesingChars.Length; i++)
-            {
-                if (_random[i] == guesingChars[i])
-                {
-                    countValueAndLocationMatches++;
-                }
-            }
+            var countValueAndLocationMatches = guesingChars.Where((t, i) => _random[i] == t).Count();
             if (countValueAndLocationMatches > 0)
             {
                 return string.Format("{0}A0B", countValueAndLocationMatches);
             }
 
 
-            var countValueMatches = 0;
-            foreach (var guesingChar in guesingChars)
-            {
-                if (Array.IndexOf(_random, guesingChar) > -1)
-                {
-                    countValueMatches++;
-                }
-            }
+            var countValueMatches = guesingChars.Count(guesingChar => Array.IndexOf(_random, guesingChar) > -1);
             if (countValueMatches > 0)
             {
                 return string.Format("0A{0}B", countValueMatches);
