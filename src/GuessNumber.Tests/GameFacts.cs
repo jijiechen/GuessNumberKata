@@ -44,6 +44,9 @@ namespace GuessNumber.Tests
         [Theory]
         [InlineData("1234", "1678", 1)]
         [InlineData("1234", "1278", 2)]
+        [InlineData("1234", "1934", 3)]
+        [InlineData("1234", "0234", 3)]
+        [InlineData("1234", "1234", 4)]
         public void should_output_numbers_of_value_and_location_matches(string random, string guess, int countMatches)
         {
             var game = new Game(random);
