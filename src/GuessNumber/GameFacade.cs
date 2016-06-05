@@ -20,6 +20,7 @@ namespace GuessNumber
             _gameOutput.WriteLine("please input your guess:");
             _gameOutput.Flush();
 
+            var timesTried = 0;
             string input;
             while (!_userInput.EndOfStream)
             {
@@ -33,6 +34,14 @@ namespace GuessNumber
                     if (result == "4A0B")
                     {
                         _gameOutput.WriteLine("You win");
+                        _gameOutput.Flush();
+                    }
+
+
+                    timesTried++;
+                    if (timesTried >= 6)
+                    {
+                        _gameOutput.WriteLine("You lost");
                         _gameOutput.Flush();
                     }
                 }

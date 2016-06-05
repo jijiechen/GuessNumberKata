@@ -65,6 +65,25 @@ namespace GuessNumber.Tests
             }
         }
 
+        [Fact]
+        public void should_print_you_lost_after_6_failed_guesses()
+        {
+            using (var io = new FakeInputOutput())
+            {
+                io.In("7634");
+                io.In("7634");
+                io.In("7634");
+                io.In("7634");
+                io.In("7634");
+                io.In("7634");
+
+                var facade = new GameFacade(io.InReader, io.OutWriter);
+                facade.StartGame(new Game("1234"));
+
+                Assert.Contains("You lost", io.Out());
+            }
+        }
+
 
     }
 }
