@@ -5,10 +5,10 @@ namespace GuessNumber
 {
     public class GameFacade
     {
-        private readonly StreamReader _userInput;
-        private readonly StreamWriter _gameOutput;
+        private readonly TextReader _userInput;
+        private readonly TextWriter _gameOutput;
 
-        public GameFacade(StreamReader userInput, StreamWriter gameOutput)
+        public GameFacade(TextReader userInput, TextWriter gameOutput)
         {
             _userInput = userInput;
             _gameOutput = gameOutput;
@@ -19,11 +19,13 @@ namespace GuessNumber
             Output("Welcome to the guess the number game.\r\nPlease input your guess:");
 
             var timesTried = 0;
-            while (!_userInput.EndOfStream)
+            while (true)
             {
                 var input = _userInput.ReadLine();
-                if (string.IsNullOrWhiteSpace(input))
-                    continue;
+                if (input == null)
+                {
+                    break;
+                }
 
                 var result = game.Guess(input);
                 Output(result);

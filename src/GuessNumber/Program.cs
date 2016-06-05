@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GuessNumber
 {
@@ -10,14 +6,12 @@ namespace GuessNumber
     {
         static void Main(string[] args)
         {
+            Console.Title = "Guess the number";
+            var gameFacade = new GameFacade(Console.In, Console.Out);
+            var game = new Game(new BuiltinRandomNumberGenerator());
+            gameFacade.StartGame(game);
 
-
-            var game = new Game("1234");
-
-            var result = game.Guess("1234");
-
-            Console.WriteLine(result);
-
+            Console.ReadLine();
 
         }
     }
