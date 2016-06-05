@@ -85,6 +85,26 @@ namespace GuessNumber.Tests
 
             Assert.Equal("4A0B", result);
         }
+
+        [Fact]
+        public void should_process_guess_longer_than_random()
+        {
+            var game = new Game("1234");
+
+            var result = game.Guess("12345");
+            var expected = string.Format("{0}A{1}B", 4, 0);
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void should_process_guess_shorter_than_random()
+        {
+            var game = new Game("1234");
+
+            var result = game.Guess("423");
+            var expected = string.Format("{0}A{1}B", 2, 1);
+            Assert.Equal(expected, result);
+        }
     
     }
 }

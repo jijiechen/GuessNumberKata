@@ -23,7 +23,7 @@ namespace GuessNumber
         {
             var guesingChars = guess.ToCharArray();
 
-            var exactMatches = guesingChars.Where((t, i) => _random[i] == t).Count();
+            var exactMatches = guesingChars.Where((t, i) => _random.Length > i && _random[i] == t).Count();
             var onlyValueMatches = guesingChars.Count(guesingChar => MatchValueOnly(guesingChar, guesingChars));
 
             return string.Format("{0}A{1}B", exactMatches, onlyValueMatches);
@@ -37,7 +37,7 @@ namespace GuessNumber
             if (!valueMatched) 
                 return false;
 
-            var locationMatched = guesingChars[matchedIndex] == guesingChar;
+            var locationMatched = guesingChars.Length > matchedIndex && guesingChars[matchedIndex] == guesingChar;
             return !locationMatched;
         }
     }
