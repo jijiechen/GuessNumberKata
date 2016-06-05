@@ -35,14 +35,17 @@ namespace GuessNumber
                     {
                         _gameOutput.WriteLine("You win");
                         _gameOutput.Flush();
+                        break;
                     }
-
-
-                    timesTried++;
-                    if (timesTried >= 6)
+                    else
                     {
-                        _gameOutput.WriteLine("You lost");
-                        _gameOutput.Flush();
+                        timesTried++;
+                        if (timesTried >= 6)
+                        {
+                            _gameOutput.WriteLine("You lost");
+                            _gameOutput.Flush();
+                            break;
+                        }
                     }
                 }
 
