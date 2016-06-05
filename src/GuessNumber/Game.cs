@@ -23,15 +23,18 @@ namespace GuessNumber
             }
 
 
-
+            var countValueMatches = 0;
             foreach (var guesingChar in guesingChars)
             {
                 if (Array.IndexOf(_random, guesingChar) > -1)
                 {
-                    return "0A1B";
+                    countValueMatches++;
                 }
             }
-
+            if (countValueMatches > 0)
+            {
+                return string.Format("0A{0}B", countValueMatches);
+            }
 
 
             return "0A0B";

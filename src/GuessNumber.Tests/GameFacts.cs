@@ -37,6 +37,20 @@ namespace GuessNumber.Tests
             var result = game.Guess(guess);
             Assert.Equal("0A1B", result);
         }
+        
+
+        [Fact]
+        public void should_output_0A2B_when_2_numbers_match_value_only()
+        {
+            var random = "1234";
+            var guess = "4378";
+
+            var game = new Game(random);
+
+
+            var result = game.Guess(guess);
+            Assert.Equal("0A2B", result);
+        }
 
         
         [Fact]
