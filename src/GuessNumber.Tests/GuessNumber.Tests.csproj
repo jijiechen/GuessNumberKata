@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="GameFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDouble\StubRandomNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

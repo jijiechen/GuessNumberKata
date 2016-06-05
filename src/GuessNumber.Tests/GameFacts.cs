@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GuessNumber.Tests.TestDouble;
 using Xunit;
 
 
@@ -73,5 +70,21 @@ namespace GuessNumber.Tests
             var expected = string.Format("{0}A{1}B", countExactMatches, countValueOnlyMatches);
             Assert.Equal(expected, result);
         }
+
+
+
+        [Fact]
+        public void should_use_random_generator()
+        {
+            var random = "1234";
+
+            var numberGenerator = new StubRandomNumberGenerator(random);
+
+            var game = new Game(numberGenerator);
+            var result = game.Guess("1234");
+
+            Assert.Equal("4A0B", result);
+        }
+    
     }
 }

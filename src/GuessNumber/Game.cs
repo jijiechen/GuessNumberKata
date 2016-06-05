@@ -5,11 +5,18 @@ namespace GuessNumber
 {
     public class Game
     {
+        private readonly IRandomNumberGenerator _numberGenerator;
         private readonly char[] _random;
 
         public Game(string random)
         {
             _random = random.ToCharArray();
+        }
+
+        public Game(IRandomNumberGenerator numberGenerator)
+        {
+            _numberGenerator = numberGenerator;
+            _random = _numberGenerator.NextNumber().ToCharArray();
         }
 
         public string Guess(string guess)
