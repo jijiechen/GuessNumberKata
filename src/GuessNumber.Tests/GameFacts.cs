@@ -28,6 +28,8 @@ namespace GuessNumber.Tests
         [Theory]
         [InlineData("1234", "4678", 1)]
         [InlineData("1234", "4378", 2)]
+        [InlineData("1234", "4372", 3)]
+        [InlineData("1234", "4123", 4)]
         public void should_output_numbers_of_value_match(string random, string guess, int countValueMatch)
         {
             var game = new Game(random);
