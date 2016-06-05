@@ -40,7 +40,7 @@ namespace GuessNumber.Tests
             var generator = new BuiltinRandomNumberGenerator();
             var numbers = new List<string>();
 
-            var times = new Random().Next(2, 100);
+            var times = new Random().Next(2, 20);
             for (int i = 0; i < times; i++)
             {
                 numbers.Add(generator.NextNumber());

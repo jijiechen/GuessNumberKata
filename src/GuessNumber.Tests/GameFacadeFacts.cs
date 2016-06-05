@@ -15,7 +15,7 @@ namespace GuessNumber.Tests
                 var facade = new GameFacade(io.InReader, io.OutWriter);
                 facade.StartGame(new Game("1234"));
 
-                Assert.Contains("please input your guess", io.Out());
+                Assert.Contains("Please input your guess", io.Out());
             }
         }
 

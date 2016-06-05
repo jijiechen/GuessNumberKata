@@ -16,40 +16,37 @@ namespace GuessNumber
 
         public void StartGame(Game game)
         {
-            _gameOutput.WriteLine("Welcome to the guess the number game.");
-            _gameOutput.WriteLine("please input your guess:");
-            _gameOutput.Flush();
+            Output("Welcome to the guess the number game.\r\nPlease input your guess:");
 
             var timesTried = 0;
-            string input;
             while (!_userInput.EndOfStream)
             {
-                input = _userInput.ReadLine();
-                if (!string.IsNullOrWhiteSpace(input))
+                var input = _userInput.ReadLine();
+                if (string.IsNullOrWhiteSpace(input))
+                    continue;
+
+                var result = game.Guess(input);
+                Output(result);
+
+                if (result == "4A0B")
                 {
-                    var result = game.Guess(input);
-                    _gameOutput.WriteLine(result);
-                    _gameOutput.Flush();
-
-                    if (result == "4A0B")
-                    {
-                        _gameOutput.WriteLine("You win");
-                        _gameOutput.Flush();
-                        break;
-                    }
-                    else
-                    {
-                        timesTried++;
-                        if (timesTried >= 6)
-                        {
-                            _gameOutput.WriteLine("You lost");
-                            _gameOutput.Flush();
-                            break;
-                        }
-                    }
+                    Output("You win");
+                    break;
                 }
-
+                
+                timesTried++;
+                if (timesTried >= 6)
+                {
+                    Output("You lost");
+                    break;
+                }
             }
+        }
+
+        private void Output(string result)
+        {
+            _gameOutput.WriteLine(result);
+            _gameOutput.Flush();
         }
     }
 }
